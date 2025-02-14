@@ -1,0 +1,80 @@
+//   const [expanded, setExpanded] = useState(null);
+
+//   const handleExpandClick = (text) => {
+//     setExpanded(expanded === text ? null : text);
+//   };
+
+// const ExpandMore = styled((props) => {
+//   const { expand, ...other } = props;
+//   return <IconButton {...other} />;
+// })(({ theme }) => ({
+//   marginLeft: "auto",
+//   transition: theme.transitions.create("transform", {
+//     duration: theme.transitions.duration.shortest,
+//   }),
+//   variants: [
+//     {
+//       props: ({ expand }) => !expand,
+//       style: {
+//         transform: "rotate(0deg)",
+//       },
+//     },
+//     {
+//       props: ({ expand }) => !!expand,
+//       style: {
+//         transform: "rotate(180deg)",
+//       },
+//     },
+//   ],
+// }));
+
+// const search = async (movie) => {
+//   if (movie.length > 2) {
+//     const query = await searchMovies(movie);
+//     setMovies(query.results);
+//   }
+// };
+
+{
+  /* <CardActions disableSpacing>
+            <ExpandMore
+              expand={expanded === movie.id}
+              onClick={() => handleExpandClick(movie.id)}
+              aria-expanded={expanded}
+              aria-label="show more"
+              >
+              <ExpandMoreSharp />
+              </ExpandMore>
+              </CardActions>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            {expanded === movie.id && (
+              <CardContent>
+                <Typography sx={{ marginBottom: 2, fontWeight: 600 }}>
+                  Detail:{" "}
+                </Typography>
+                <ul>
+                  <li>
+                    <Typography sx={{ marginBottom: 2 }}>
+                      Rating: {movie.vote_average}
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography sx={{ marginBottom: 2 }}>
+                    Popularity: {movie.popularity}
+                    </Typography>
+                    </li>
+                    <li>
+                    <Typography sx={{ marginBottom: 2 }}>
+                    Total Review: {movie.vote_count}
+                    </Typography>
+                    </li>
+                    <li>
+                    <Typography sx={{ marginBottom: 2 }}>
+                    Original Movie Language: {movie.original_language}
+                    </Typography>
+                    </li>
+                    </ul>
+                    </CardContent>
+                    )}
+                    </Collapse> */
+}
