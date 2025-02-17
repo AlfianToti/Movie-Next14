@@ -43,40 +43,48 @@ export default function Searched({ data, searchQuery }) {
           },
         }}
       />
-      {data.map((item, index) => (
-        <Link key={index} href={`/detail/${item.id}`}>
-          <div className="flex flex-row w-full p-7 mt-8 text-white border-b border-black">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${item?.poster_path}`}
-              width={100}
-              height={100}
-              className="object-contain"
-              alt={item.title}
-            />
-            <div className="flex flex-col gap-2 px-4">
-              <Typography className="text-2xl">
-                {item.title} {` (${item.release_date.split("-")[0]})`}
-              </Typography>
-              <Typography className="text-gray-400">
-                {`Rate : ${item.vote_average}`} {" | "}{" "}
-                {item.release_date.split("-")[0]}
-              </Typography>
-              <Typography
-                className="text-gray-500"
-                sx={{
-                  display: "-webkit-box",
-                  WebkitBoxOrient: "vertical",
-                  WebkitLineClamp: 5,
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                {item.overview}
-              </Typography>
+      {data.length > 0 ? (
+        data.map((item, index) => (
+          <Link key={index} href={`/detail/${item.id}`}>
+            <div className="flex flex-row w-full p-7 mt-8 text-white border-b border-black">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${item?.poster_path}`}
+                width={100}
+                height={100}
+                className="object-contain"
+                alt={item.title}
+              />
+              <div className="flex flex-col gap-2 px-4">
+                <Typography className="text-2xl">
+                  {item.title} {` (${item.release_date.split("-")[0]})`}
+                </Typography>
+                <Typography className="text-gray-400">
+                  {`Rate : ${item.vote_average}`} {" | "}{" "}
+                  {item.release_date.split("-")[0]}
+                </Typography>
+                <Typography
+                  className="text-gray-500"
+                  sx={{
+                    display: "-webkit-box",
+                    WebkitBoxOrient: "vertical",
+                    WebkitLineClamp: 5,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {item.overview}
+                </Typography>
+              </div>
             </div>
-          </div>
-        </Link>
-      ))}
+          </Link>
+        ))
+      ) : (
+        <div className="w-full mt-10 pt-9">
+          <Typography variant="h4" align="center" fontWeight={700}>
+            There's no movie named "{searchQuery}"
+          </Typography>
+        </div>
+      )}
     </div>
   );
 }
