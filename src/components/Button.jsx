@@ -9,6 +9,7 @@ export default function ButtonComponent({
   hover = "red",
   handleClick,
   isActive,
+  bgColorActive = "red",
   bgColor = "#292929",
   fontSize = "12px",
   minWidth,
@@ -27,10 +28,10 @@ export default function ButtonComponent({
         textTransform: transform,
         paddingY: "8px",
         paddingX: padding,
-        backgroundColor: bgColor,
+        backgroundColor: isActive ? bgColorActive : bgColor,
         borderRadius: "23px",
         "&:hover": {
-          backgroundColor: hover,
+          backgroundColor: isActive ? bgColor : hover,
         },
       }}
     >

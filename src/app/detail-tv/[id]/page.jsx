@@ -4,8 +4,8 @@ import DetailTv from "@/components/DetailTv";
 import Header from "@/components/Header";
 import { FetchData } from "@/libs/fetchData";
 
-export default async function MovieDetailsPage({ params }) {
-  const tvId = params.Id;
+export default async function TvDetailsPage({ params }) {
+  const tvId = params.id;
   const tvDetail = await FetchData({ uri: `tv/${tvId}` });
   const productionCompanies = tvDetail?.production_companies;
 

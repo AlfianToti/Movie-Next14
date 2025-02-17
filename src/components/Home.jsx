@@ -7,40 +7,9 @@ import CardComponent from "@/components/Card";
 import ButtonComponent from "@/components/Button";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const { setFavoriteMovies, setWatchListMovies } = Api();
-
-export function BtnList({ genres }) {
-  return (
-    <>
-      <Box
-        sx={{
-          backgroundColor: "#18171c",
-          display: "flex",
-          justifyContent: { xs: "start", lg: "center" },
-          paddingY: "30px",
-          paddingX: "15px",
-          borderWidth: "thin",
-          borderColor: "#1c1b20",
-          columnGap: "15px",
-          overflow: { xs: "auto", lg: "visible" },
-          whiteSpace: "nowrap",
-        }}
-      >
-        {genres.map((genre) => (
-          <ButtonComponent
-            data={genre}
-            text={genre}
-            hover={"red"}
-            padding={"30px"}
-            transform={"none"}
-            minWidth={"120px"}
-          />
-        ))}
-      </Box>
-    </>
-  );
-}
 
 export function TabList({ tabs }) {
   const [tabsChange, setTabsChange] = useState(tabs[0]);
@@ -93,12 +62,91 @@ export function TabList({ tabs }) {
   );
 }
 
-export function MovieList({ mov, watchMov, favMov }) {
+export function BtnList({ genres }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const currentGenre = searchParams.get("genre");
+
+  const handleGenreClick = (genreId) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (currentGenre === String(genreId)) {
+      params.delete("genre");
+    } else {
+      params.set("genre", genreId);
+    }
+    router.push(`?${params.toString()}`, { scroll: false });
+  };
+
+  return (
+    <>
+      <Box
+        sx={{
+          backgroundColor: "#18171c",
+          display: "flex",
+          justifyContent: "start",
+          paddingY: "30px",
+          paddingX: "15px",
+          borderWidth: "thin",
+          borderColor: "#1c1b20",
+          columnGap: "15px",
+          overflow: "auto",
+          whiteSpace: "nowrap",
+          scrollbarWidth: "thin",
+          scrollbarColor: "transparent transparent",
+          "&::webkit-scrollbar": {
+            width: "0px",
+            height: "0px",
+          },
+          "&::webkit-scrollbar-thumb": {
+            background: "transparent",
+          },
+          "&::webkit-scrollbar-track": {
+            background: "transparent",
+          },
+        }}
+      >
+        {genres?.map((genre) => {
+          const isActive = currentGenre === String(genre.id);
+          return (
+            <ButtonComponent
+              data={genre?.id}
+              text={genre?.name}
+              hover={"red"}
+              padding={"30px"}
+              transform={"none"}
+              minWidth={"120px"}
+              isActive={isActive}
+              handleClick={handleGenreClick}
+            />
+          );
+        })}
+      </Box>
+    </>
+  );
+}
+
+export function MovieList({ selectedGenre, mov, watchMov, favMov }) {
   const [watchlist, setWatchlist] = useState({});
   const [fav, setFav] = useState({});
+  const [movies, setMovies] = useState([]);
 
   const fetchData = async () => {
     try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/discover/movie${
+          selectedGenre ? `?with_genres=${selectedGenre}` : ""
+        }`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: process.env.NEXT_PUBLIC_BEARER_KEY,
+          },
+          cache: "no-store",
+        }
+      );
+      const response = await res.json();
       const wlList = watchMov;
       const favList = favMov;
 
@@ -113,6 +161,7 @@ export function MovieList({ mov, watchMov, favMov }) {
 
       setFav(favoriteData);
       setWatchlist(watchlistData);
+      setMovies(response.results || []);
     } catch (error) {
       console.error("Error fetching data", error);
     }
@@ -120,7 +169,7 @@ export function MovieList({ mov, watchMov, favMov }) {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [selectedGenre]);
 
   const handleFavClick = async (mediaId) => {
     const favoriteStatus = !fav[mediaId];
@@ -195,7 +244,7 @@ export function MovieList({ mov, watchMov, favMov }) {
       slidesToSlide={1}
       swipeable
     >
-      {mov.slice(0, 19).map((movie) => (
+      {movies?.map((movie) => (
         <CardComponent
           sxMedia={{
             display: "flex",

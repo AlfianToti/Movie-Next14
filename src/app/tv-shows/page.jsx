@@ -1,6 +1,6 @@
 "use server";
 
-import { FetchData } from "../../libs/fetchData";
+import { FetchData } from "@/libs/fetchData";
 import TvShow from "@/components/TvShows";
 import Header from "@/components/Header";
 

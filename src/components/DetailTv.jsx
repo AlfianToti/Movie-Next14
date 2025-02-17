@@ -3,7 +3,8 @@
 import { Typography, Card, CardMedia, CardContent } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import AirplayIcon from "@mui/icons-material/Airplay";
+import TvIcon from "@mui/icons-material/Tv";
 import CardComponent from "./Card";
 
 export default function DetailTv({ prodCom, detailTv }) {
@@ -38,13 +39,13 @@ export default function DetailTv({ prodCom, detailTv }) {
   return (
     <>
       <div
-        className="w-full flex flex-row justify-between bg-center bg-cover px-56 pt-10 pb-24"
+        className="w-fit xl:w-full flex flex-row justify-between bg-center bg-cover px-56 pt-10 pb-24"
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/w500/${detailTv?.backdrop_path})`,
           boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.8)",
         }}
       >
-        <div className="flex flex-col py-5 bg-opacity-40 rounded-2xl">
+        <div className="hidden md:flex flex-col py-5 bg-opacity-40 rounded-2xl">
           <Typography
             align="left"
             sx={{
@@ -54,7 +55,7 @@ export default function DetailTv({ prodCom, detailTv }) {
               fontWeight: "700",
             }}
           >
-            {detailTv?.title}
+            {detailTv?.name}
           </Typography>
           <Typography variant="h6" width={500} align="left" fontWeight={600}>
             "{detailTv?.tagline}"
@@ -71,17 +72,27 @@ export default function DetailTv({ prodCom, detailTv }) {
             <Typography
               variant="body1"
               marginTop={2}
-              align="left"
-              sx={{ display: "flex", alignItems: "center" }}
+              align="center"
+              sx={{
+                fontSize: "15px",
+                "@media (max-width: 1280px)": { fontSize: "10px" },
+                display: "flex",
+                alignItems: "center",
+              }}
             >
               <CalendarMonthIcon sx={{ color: "blue" }} />:{" "}
-              {detailTv?.release_date}
+              {detailTv?.first_air_date} - {detailTv?.last_air_date}
             </Typography>
             <Typography
               variant="body1"
               marginTop={2}
               align="left"
-              sx={{ display: "flex", alignItems: "center" }}
+              sx={{
+                fontSize: "15px",
+                "@media (max-width: 1280px)": { fontSize: "10px" },
+                display: "flex",
+                alignItems: "center",
+              }}
             >
               <StarBorderIcon sx={{ color: "yellow" }} />:{" "}
               {detailTv?.vote_average}
@@ -90,14 +101,45 @@ export default function DetailTv({ prodCom, detailTv }) {
               variant="body1"
               marginTop={2}
               align="left"
-              sx={{ display: "flex", alignItems: "center" }}
+              sx={{
+                fontSize: "15px",
+                "@media (max-width: 1280px)": { fontSize: "10px" },
+                display: "flex",
+                alignItems: "center",
+              }}
             >
-              <AccessTimeIcon sx={{ color: "teal" }} />: {detailTv?.runtime}{" "}
-              minutes
+              <TvIcon sx={{ color: "teal" }} />: {detailTv?.number_of_episodes}{" "}
+              Total Episodes
+            </Typography>
+            <Typography
+              variant="body1"
+              marginTop={2}
+              align="left"
+              sx={{
+                fontSize: "15px",
+                "@media (max-width: 1280px)": { fontSize: "10px" },
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <TvIcon sx={{ color: "violet" }} />: {detailTv?.number_of_seasons}{" "}
+              Total Seasons
             </Typography>
           </div>
         </div>
-        <div className="flex flex-wrap">
+        <div className="flex flex-col items-center">
+          <Typography
+            align="center"
+            sx={{
+              "@media (min-width: 768px)": { display: "none" },
+              color: "white",
+              fontSize: "20px",
+              marginBottom: "10px",
+              fontWeight: "700",
+            }}
+          >
+            {detailTv?.name}
+          </Typography>
           <Card
             sx={{
               width: 200,
@@ -117,6 +159,72 @@ export default function DetailTv({ prodCom, detailTv }) {
               }}
             />
           </Card>
+          <Typography
+            variant="subtitle2"
+            width={500}
+            align="center"
+            marginTop={2}
+            sx={{
+              "@media (max-width: 528px)": { width: "200px", fontSize: "12px" },
+              "@media (min-width: 768px)": { display: "none" },
+            }}
+          >
+            {detailTv?.overview}
+          </Typography>
+          <div className="flex flex-col sm:flex-row space-x-5 mt-5 md:hidden">
+            <Typography
+              variant="body1"
+              marginTop={2}
+              align="left"
+              sx={{
+                fontSize: "10px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <CalendarMonthIcon sx={{ color: "blue" }} />:{" "}
+              {detailTv?.first_air_date} - {detailTv?.last_air_date}
+            </Typography>
+            <Typography
+              variant="body1"
+              marginTop={2}
+              align="left"
+              sx={{
+                fontSize: "10px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <StarBorderIcon sx={{ color: "yellow" }} />:{" "}
+              {detailTv?.vote_average}
+            </Typography>
+            <Typography
+              variant="body1"
+              marginTop={2}
+              align="left"
+              sx={{
+                fontSize: "10px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <TvIcon sx={{ color: "teal" }} />: {detailTv?.number_of_episodes}{" "}
+              Total Episodes
+            </Typography>
+            <Typography
+              variant="body1"
+              marginTop={2}
+              align="left"
+              sx={{
+                fontSize: "10px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <TvIcon sx={{ color: "violet" }} />: {detailTv?.number_of_seasons}{" "}
+              Total Seasons
+            </Typography>
+          </div>
         </div>
       </div>
       <div className="flex flex-col space-y-9 text-center py-10 px-5 border-t-2 border-gray-500">

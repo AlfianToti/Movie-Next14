@@ -31,7 +31,7 @@ export default function CardComponent({
           image={`https://image.tmdb.org/t/p/w500/${
             data.poster_path || data.logo_path
           }`}
-          alt="Poster"
+          alt={data.name}
           sx={sxMedia}
         />
         <CardContent>

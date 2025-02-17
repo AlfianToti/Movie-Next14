@@ -38,13 +38,13 @@ export default function Detail({ prodCom, detailMov }) {
   return (
     <>
       <div
-        className="w-full flex flex-row justify-between bg-center bg-cover px-56 pt-10 pb-24"
+        className="w-fit xl:w-full flex flex-row justify-between bg-center bg-cover px-56 pt-10 pb-24"
         style={{
           backgroundImage: `url(https://image.tmdb.org/t/p/w500/${detailMov?.backdrop_path})`,
           boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.8)",
         }}
       >
-        <div className="flex flex-col py-5 bg-opacity-40 rounded-2xl">
+        <div className="hidden md:flex flex-col py-5 bg-opacity-40">
           <Typography
             align="left"
             sx={{
@@ -57,7 +57,7 @@ export default function Detail({ prodCom, detailMov }) {
             {detailMov?.title}
           </Typography>
           <Typography variant="h6" width={500} align="left" fontWeight={600}>
-            "{detailMov?.tagline}"
+            "{detailMov.tagline ? detailMov.tagline : "-"}"
           </Typography>
           <Typography
             variant="subtitle2"
@@ -97,7 +97,19 @@ export default function Detail({ prodCom, detailMov }) {
             </Typography>
           </div>
         </div>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center">
+          <Typography
+            align="center"
+            sx={{
+              "@media (min-width: 768px)": { display: "none" },
+              color: "white",
+              fontSize: "20px",
+              marginBottom: "10px",
+              fontWeight: "700",
+            }}
+          >
+            {detailMov?.title}
+          </Typography>
           <Card
             sx={{
               width: 200,
@@ -117,6 +129,46 @@ export default function Detail({ prodCom, detailMov }) {
               }}
             />
           </Card>
+          <Typography
+            variant="subtitle2"
+            width={500}
+            align="center"
+            marginTop={2}
+            sx={{
+              "@media (min-width: 768px)": { display: "none" },
+            }}
+          >
+            {detailMov?.overview}
+          </Typography>
+          <div className="flex flex-row space-x-5 mt-5 md:hidden">
+            <Typography
+              variant="body1"
+              marginTop={2}
+              align="center"
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <CalendarMonthIcon sx={{ color: "blue" }} />:{" "}
+              {detailMov?.release_date}
+            </Typography>
+            <Typography
+              variant="body1"
+              marginTop={2}
+              align="center"
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <StarBorderIcon sx={{ color: "yellow" }} />:{" "}
+              {detailMov?.vote_average}
+            </Typography>
+            <Typography
+              variant="body1"
+              marginTop={2}
+              align="center"
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <AccessTimeIcon sx={{ color: "teal" }} />: {detailMov?.runtime}{" "}
+              minutes
+            </Typography>
+          </div>
         </div>
       </div>
       <div className="flex flex-col space-y-9 text-center py-10 px-5 border-t-2 border-gray-500">
