@@ -10,7 +10,7 @@ export default async function Page({ params }) {
   return (
     <div className="text-white items-center flex flex-col">
       <Header />
-      <Searched data={searchedMov.results} searchQuery={srcMov} />
+      <Searched data={searchedMov?.results} searchQuery={srcMov} />
     </div>
   );
 }

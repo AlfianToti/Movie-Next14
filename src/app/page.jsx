@@ -27,15 +27,15 @@ export default async function Page({ searchParams }) {
   return (
     <div className="w-full">
       <Header />
-      <AllHeros movies={movies.results} />
+      <AllHeros movies={movies?.results} />
       <TabList tabs={tabs} />
-      <BtnList genres={genres.genres} />
+      <BtnList genres={genres?.genres} />
       <div className="flex flex-wrap items-center justify-center gap-5 space-y-9 py-3 px-3">
         <MovieList
           selectedGenre={selectedGenres}
-          mov={movies.results}
-          watchMov={wlMovies.results}
-          favMov={favMovies.results}
+          mov={movies?.results}
+          watchMov={wlMovies?.results}
+          favMov={favMovies?.results}
         />
       </div>
     </div>

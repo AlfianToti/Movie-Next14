@@ -13,7 +13,7 @@ async function Page() {
   return (
     <div>
       <Header />
-      <Watchlist watchMov={watchlist.results} />
+      <Watchlist watchMov={watchlist?.results} />
     </div>
   );
 }

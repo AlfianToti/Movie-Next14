@@ -1,8 +1,25 @@
 "use client";
 
 import CardComponent from "@/components/Card";
+import MenuComponent from "./Menu";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default function Movies({ movies }) {
+export default function Movies({ movies, genres }) {
+  // const router = useRouter();
+  // const searchParams = useSearchParams();
+
+  // const currentGenre = searchParams.get("genre");
+
+  // const handleGenreClick = (genreId) => {
+  //   const params = new URLSearchParams(searchParams.toString());
+  //   if (currentGenre === String(genreId)) {
+  //     params.delete("genre");
+  //   } else {
+  //     params.set("genre", genreId);
+  //   }
+  //   router.push(`?${params.toString()}`, { scroll: false });
+  // };
+
   const TrendingMovieList = () => {
     return movies.map((data) => {
       return (
@@ -33,9 +50,14 @@ export default function Movies({ movies }) {
 
   return (
     <>
-      <h1 className="text-white py-6 text-center font-semibold text-2xl md:text-3xl">
-        Trending Movies
-      </h1>
+      <div className="flex w-full py-6 px-16 justify-center">
+        <h1 className="text-white text-center font-semibold text-2xl md:text-3xl">
+          Trending Movies
+        </h1>
+        {/* <div className="">
+          <MenuComponent data={genres} handleClick={handleGenreClick} />
+        </div> */}
+      </div>
       <div
         style={{
           padding: "40px",

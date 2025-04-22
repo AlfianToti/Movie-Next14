@@ -3,7 +3,6 @@
 import { Typography, Card, CardMedia, CardContent } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import AirplayIcon from "@mui/icons-material/Airplay";
 import TvIcon from "@mui/icons-material/Tv";
 import CardComponent from "./Card";
 

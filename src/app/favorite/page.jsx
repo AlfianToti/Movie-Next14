@@ -10,7 +10,7 @@ async function Page() {
   return (
     <div>
       <Header />
-      <FavoriteList favoriteMov={favlist.results} />
+      <FavoriteList favoriteMov={favlist?.results} />
     </div>
   );
 }

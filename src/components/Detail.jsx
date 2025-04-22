@@ -97,7 +97,7 @@ export default function Detail({ prodCom, detailMov }) {
             </Typography>
           </div>
         </div>
-        <div className="flex flex-wrap justify-center">
+        <div className="flex flex-col items-center">
           <Typography
             align="center"
             sx={{
@@ -135,12 +135,13 @@ export default function Detail({ prodCom, detailMov }) {
             align="center"
             marginTop={2}
             sx={{
+              "@media (max-width: 528px)": { width: "200px", fontSize: "12px" },
               "@media (min-width: 768px)": { display: "none" },
             }}
           >
             {detailMov?.overview}
           </Typography>
-          <div className="flex flex-row space-x-5 mt-5 md:hidden">
+          <div className="flex flex-col items-baseline sm:flex-row space-x-5 mt-5 md:hidden">
             <Typography
               variant="body1"
               marginTop={2}
