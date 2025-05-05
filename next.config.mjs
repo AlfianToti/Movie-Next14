@@ -5,8 +5,14 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "image.tmdb.org",
-        port: "",
+        port: "*",
         pathname: "/t/p/**",
+      },
+      {
+        protocol: "https",
+        hostname: "movie-next14.vercel.app",
+        port: "*",
+        pathname: "*",
       },
     ],
   },
