@@ -3,6 +3,7 @@ import { TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Searched({ data, searchQuery }) {
   const router = useRouter();
@@ -47,7 +48,7 @@ export default function Searched({ data, searchQuery }) {
         data.map((item, index) => (
           <Link key={index} href={`/detail/${item.id}`}>
             <div className="flex flex-row w-full p-7 mt-8 text-white border-b border-black">
-              <img
+              <Image
                 src={`https://image.tmdb.org/t/p/w500${item?.poster_path}`}
                 width={100}
                 height={100}
@@ -81,7 +82,7 @@ export default function Searched({ data, searchQuery }) {
       ) : (
         <div className="w-full mt-10 pt-9">
           <Typography variant="h4" align="center" fontWeight={700}>
-            There's no movie named "{searchQuery}"
+            There&apos;s no movie named &quot;{searchQuery}&quot;
           </Typography>
         </div>
       )}

@@ -39,7 +39,7 @@ export function Heros({ mov, favMov, watchMov }) {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   const handleFavClick = async (mediaId) => {
     const favoriteStatus = !fav[mediaId];

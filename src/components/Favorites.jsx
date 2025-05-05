@@ -26,7 +26,7 @@ export default function FavoriteList({ favoriteMov }) {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   const handleFavClick = async (mediaId) => {
     const favoriteStatus = !favor[mediaId];
@@ -44,9 +44,10 @@ export default function FavoriteList({ favoriteMov }) {
   };
 
   const FL = () => {
-    return favoriteMov.map((favmovie) => {
+    return favoriteMov?.map((favmovie) => {
       return (
         <CardComponent
+          key={favmovie.id}
           sxMedia={{
             display: "flex",
             objectFit: "contain",

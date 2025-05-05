@@ -11,6 +11,7 @@ export default function Detail({ prodCom, detailMov }) {
     return prodCom?.map((company) => {
       return (
         <CardComponent
+          key={company.id}
           sx={{
             width: 150,
             height: 200,
@@ -58,7 +59,7 @@ export default function Detail({ prodCom, detailMov }) {
             {detailMov?.title}
           </Typography>
           <Typography variant="h6" width={500} align="left" fontWeight={600}>
-            "{detailMov.tagline ? detailMov.tagline : "-"}"
+            &quot;{detailMov.tagline ? detailMov.tagline : "-"}&quot;
           </Typography>
           <Typography
             variant="subtitle2"

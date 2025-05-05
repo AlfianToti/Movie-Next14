@@ -42,7 +42,7 @@ export default function Header() {
   return (
     <div className="pt-2 pb-2 px-10 w-full border-b border-gray-800 bg-transparent flex justify-between items-center">
       <Link href="/">
-        <Image src={"/img/logo.png"} width={130} height={80} />
+        <Image src={"/img/logo.png"} width={130} height={80} alt="logo" />
       </Link>
       <div className="hidden lg:flex gap-8 items-center">
         {pages.map((page) => {

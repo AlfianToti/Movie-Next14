@@ -26,7 +26,7 @@ function Watchlist({ watchMov }) {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   const handleWLClick = async (mediaId) => {
     const watchlistStatus = !watchlist[mediaId];
@@ -44,9 +44,10 @@ function Watchlist({ watchMov }) {
   };
 
   const WatchlistList = () => {
-    return watchMov.map((wlmovie) => {
+    return watchMov?.map((wlmovie) => {
       return (
         <CardComponent
+          key={wlmovie.id}
           sxMedia={{}}
           sx={{
             width: 150,

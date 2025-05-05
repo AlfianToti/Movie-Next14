@@ -1,29 +1,13 @@
 "use client";
 
 import CardComponent from "@/components/Card";
-import MenuComponent from "./Menu";
-import { useRouter, useSearchParams } from "next/navigation";
 
-export default function Movies({ movies, genres }) {
-  // const router = useRouter();
-  // const searchParams = useSearchParams();
-
-  // const currentGenre = searchParams.get("genre");
-
-  // const handleGenreClick = (genreId) => {
-  //   const params = new URLSearchParams(searchParams.toString());
-  //   if (currentGenre === String(genreId)) {
-  //     params.delete("genre");
-  //   } else {
-  //     params.set("genre", genreId);
-  //   }
-  //   router.push(`?${params.toString()}`, { scroll: false });
-  // };
-
+export default function Movies({ movies }) {
   const TrendingMovieList = () => {
-    return movies.map((data) => {
+    return movies?.map((data) => {
       return (
         <CardComponent
+          key={data.id}
           sxMedia={{
             display: "flex",
             objectFit: "contain",

@@ -5,9 +5,10 @@ import { Card, CardContent, CardMedia, Link, Typography } from "@mui/material";
 
 export default function TvShow({ tvs }) {
   const TrendingTVList = () => {
-    return tvs.map((data) => {
+    return tvs?.map((data) => {
       return (
         <CardComponent
+          key={data.id}
           sxMedia={{
             display: "flex",
             objectFit: "contain",

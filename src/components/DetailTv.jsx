@@ -11,6 +11,7 @@ export default function DetailTv({ prodCom, detailTv }) {
     return prodCom?.map((company) => {
       return (
         <CardComponent
+          key={company.id}
           sx={{
             width: 150,
             height: 200,
@@ -58,7 +59,7 @@ export default function DetailTv({ prodCom, detailTv }) {
             {detailTv?.name}
           </Typography>
           <Typography variant="h6" width={500} align="left" fontWeight={600}>
-            "{detailTv?.tagline}"
+            &quot;{detailTv?.tagline}&quot;
           </Typography>
           <Typography
             variant="subtitle2"

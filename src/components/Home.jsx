@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Tabs, Tab, Box } from "@mui/material";
 import Api from "@/api/api";
 import CardComponent from "@/components/Card";
@@ -132,7 +132,7 @@ export function MovieList({ selectedGenre, mov, watchMov, favMov }) {
   const [fav, setFav] = useState({});
   const [movies, setMovies] = useState([]);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/discover/movie${
@@ -166,11 +166,11 @@ export function MovieList({ selectedGenre, mov, watchMov, favMov }) {
     } catch (error) {
       console.error("Error fetching data", error);
     }
-  };
+  }, [selectedGenre, favMov, watchMov]);
 
   useEffect(() => {
     fetchData();
-  }, [selectedGenre]);
+  }, [fetchData]);
 
   const handleFavClick = async (mediaId) => {
     const favoriteStatus = !fav[mediaId];
@@ -245,9 +245,9 @@ export function MovieList({ selectedGenre, mov, watchMov, favMov }) {
       slidesToSlide={1}
       swipeable
     >
-      {movies?.map((movie, index) => (
+      {movies?.map((movie) => (
         <CardComponent
-          key={index}
+          key={movie.id}
           sxMedia={{
             display: "flex",
             objectFit: "contain",
