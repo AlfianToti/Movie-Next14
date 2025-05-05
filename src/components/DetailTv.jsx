@@ -28,6 +28,7 @@ export default function DetailTv({ prodCom, detailTv }) {
             padding: "10px",
             display: "flex",
             objectFit: "contain",
+            color: "white",
           }}
           data={company}
         />

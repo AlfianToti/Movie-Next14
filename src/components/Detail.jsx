@@ -28,6 +28,7 @@ export default function Detail({ prodCom, detailMov }) {
             padding: "10px",
             display: "flex",
             objectFit: "contain",
+            color: "white",
           }}
           data={company}
         />

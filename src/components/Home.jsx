@@ -106,10 +106,11 @@ export function BtnList({ genres }) {
           },
         }}
       >
-        {genres?.map((genre) => {
+        {genres?.map((genre, index) => {
           const isActive = currentGenre === String(genre.id);
           return (
             <ButtonComponent
+              key={index}
               data={genre?.id}
               text={genre?.name}
               hover={"red"}
@@ -244,8 +245,9 @@ export function MovieList({ selectedGenre, mov, watchMov, favMov }) {
       slidesToSlide={1}
       swipeable
     >
-      {movies?.map((movie) => (
+      {movies?.map((movie, index) => (
         <CardComponent
+          key={index}
           sxMedia={{
             display: "flex",
             objectFit: "contain",
